@@ -1,0 +1,58 @@
+ kubectl describe deployment metrics-server -n kube-system
+Name:                   metrics-server
+Namespace:              kube-system
+CreationTimestamp:      Thu, 26 Feb 2026 03:57:27 +0000
+Labels:                 app.kubernetes.io/instance=metrics-server
+                        app.kubernetes.io/managed-by=EKS
+                        app.kubernetes.io/name=metrics-server
+                        app.kubernetes.io/version=0.7.2
+Annotations:            deployment.kubernetes.io/revision: 1
+Selector:               app.kubernetes.io/instance=metrics-server,app.kubernetes.io/name=metrics-server
+Replicas:               2 desired | 2 updated | 2 total | 2 available | 0 unavailable
+StrategyType:           RollingUpdate
+MinReadySeconds:        0
+RollingUpdateStrategy:  1 max unavailable, 25% max surge
+Pod Template:
+  Labels:           app.kubernetes.io/instance=metrics-server
+                    app.kubernetes.io/name=metrics-server
+  Service Account:  metrics-server
+  Containers:
+   metrics-server:
+    Image:           602401143452.dkr.ecr.us-east-1.amazonaws.com/eks/metrics-server:v0.8.1-eksbuild.1
+    Port:            10251/TCP (https)
+    Host Port:       0/TCP (https)
+    SeccompProfile:  RuntimeDefault
+    Args:
+      --secure-port=10251
+      --cert-dir=/tmp
+      --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
+      --kubelet-use-node-status-port
+      --metric-resolution=15s
+    Limits:
+      memory:  400Mi
+    Requests:
+      cpu:        100m
+      memory:     200Mi
+    Liveness:     http-get https://:https/livez delay=0s timeout=1s period=10s #success=1 #failure=3
+    Readiness:    http-get https://:https/readyz delay=20s timeout=1s period=10s #success=1 #failure=3
+    Environment:  <none>
+    Mounts:
+      /tmp from tmp (rw)
+  Volumes:
+   tmp:
+    Type:                       EmptyDir (a temporary directory that shares a pod's lifetime)
+    Medium:
+    SizeLimit:                  <unset>
+  Topology Spread Constraints:  topology.kubernetes.io/zone:ScheduleAnyway when max skew 1 is exceeded for selector app.kubernetes.io/instance=metrics-server,app.kubernetes.io/name=metrics-server
+  Priority Class Name:          system-cluster-critical
+  Node-Selectors:               <none>
+  Tolerations:                  CriticalAddonsOnly op=Exists
+Conditions:
+  Type           Status  Reason
+  ----           ------  ------
+  Available      True    MinimumReplicasAvailable
+  Progressing    True    NewReplicaSetAvailable
+OldReplicaSets:  <none>
+NewReplicaSet:   metrics-server-6556bc968f (2/2 replicas created)
+Events:          <none>
+ubuntu@ip-172-31-26-50:~$

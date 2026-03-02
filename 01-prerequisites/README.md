@@ -35,18 +35,18 @@ Helm-based deployment strategy
 
 # Tools Used
 
-a.Amazon Web Services (EKS)
+a. Amazon Web Services (EKS)
 
-b.Kubernetes
+b. Kubernetes
 
-c.eksctl
+c. eksctl
 
-d.Helm
+d. Helm
 
-e.Prometheus
+e. Prometheus
 
-f.Grafana
+f. Grafana
 
-g.Metrics Server
+g. Metrics Server
 
-h.IRSA (OIDC based IAM integration)
+h. IRSA (OIDC based IAM integration)

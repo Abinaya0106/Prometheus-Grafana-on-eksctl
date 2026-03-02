@@ -1,0 +1,78 @@
+Prometheus Server Startup problems
+
+# Check Prometheus service status
+sudo systemctl status prometheus
+
+# View Prometheus logs
+sudo journalctl -u prometheus -f
+
+# Verify Prometheus configuration
+promtool check config /etc/prometheus/prometheus.yml
+
+# Test Prometheus configuration file
+prometheus --test --config.file=/etc/prometheus/prometheus.yml
+
+# Check if Prometheus is running
+ps aux | grep prometheus
+
+Common Configuration Issues
+Invalid YAML syntax
+
+Target Connection Issues
+Network connectivity
+
+# Check connectivity to target
+curl -v http://target:port/metrics
+telnet target port
+Authentication issues
+
+# Test with authentication
+curl -v -u username:password http://target:port/metrics
+TLS/SSL problems
+
+# Test with TLS
+curl -v --cert /path/to/cert.pem --key /path/to/key.pem https://target:port/metrics
+
+# Skip verification for testing
+curl -v -k https://target:port/metrics
+
+# Use YAML linter to check syntax
+yamllint /etc/prometheus/prometheus.yml
+Permission problems
+
+# KUBERNETES SERVICE DISCOVERY ISSUE
+# Check RBAC permissions
+kubectl auth can-i list pods --as=system:serviceaccount:monitoring:prometheus
+
+# Inspect service discovery annotations
+kubectl get pods -n app-namespace -o jsonpath='{.items[*].metadata.annotations}'
+
+# Verify endpoints existence
+kubectl get endpoints -n app-namespace
+
+## Grafana Authentication issue
+
+Login Problems 
+
+# Check auth settings
+grep "auth" /etc/grafana/grafana.ini
+
+# Verify LDAP configuration
+cat /etc/grafana/ldap.toml
+
+# Test LDAP connection
+ldapsearch -x -H ldap://ldap-server:389 -D "cn=admin,dc=example,dc=com" -w password -b "dc=example,dc=com" "(uid=username)"
+
+# Check Grafana auth logs
+grep "logger=auth" /var/log/grafana/grafana.log
+
+## Reset Admin Password 
+
+# CLI reset (Grafana 8+)
+grafana-cli admin reset-admin-password newpassword
+
+# SQLite database
+sqlite3 /var/lib/grafana/grafana.db "UPDATE user SET password = '59acf18b94d7eb0694c61e60ce44c110c7a683ac6a8f09580d626f90f4a242000746579358d77dd9e570e83fa24faa88a8a6', salt = 'F3FAxVm33R' WHERE login = 'admin'"
+
+# PostgreSQL database
+sudo -u grafana psql -h localhost -U grafana -d grafana -c "UPDATE \"user\" SET password = '59acf18b94d7eb0694c61e60ce44c110c7a683ac6a8f09580d626f90f4a242000746579358d77dd9e570e83fa24faa88a8a6', salt = 'F3FAxVm33R' WHERE login = 'admin';"

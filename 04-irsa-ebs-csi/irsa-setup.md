@@ -63,12 +63,12 @@ eksctl create iamserviceaccount \
   --region us-east-1
 
 
-> --name ebs-csi-controller-sa
+**name ebs-csi-controller-sa**
 Creates Kubernetes Service Account named: ebs-csi-controller-sa
-> --namespace kube-system
+**namespace kube-system**
 Creates it inside: kube-system namespace cluster eks2 Target EKS cluster.
 
-> --attach-policy-arn AmazonEBSCSIDriverPolicy
+**attach-policy-arn AmazonEBSCSIDriverPolicy**
 Attaches AWS managed IAM policy that allows:
 •	Create EBS volumes
 •	Attach volumes to EC2

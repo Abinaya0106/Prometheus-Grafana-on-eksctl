@@ -15,27 +15,27 @@ eksctl create cluster \
 
 ## AWS creates:
 
-Control plane
+- Control plane
 
-Worker nodes
+- Worker nodes
 
-Networking
+- Networking
 
-IAM roles
+- IAM roles
 
 But your local machine still does NOT know about it.
 
 ### What does aws eks update-kubeconfig do?
 
-Fetches cluster endpoint from AWS
+- Fetches cluster endpoint from AWS
 
-Gets cluster certificate
+- Gets cluster certificate
 
-Configures IAM authentication
+- Configures IAM authentication
 
-Adds cluster details into ~/.kube/config
+- Adds cluster details into ~/.kube/config
 
-Sets current context to that cluster
+- Sets current context to that cluster
 
 ## Updating kubeconfig :
 

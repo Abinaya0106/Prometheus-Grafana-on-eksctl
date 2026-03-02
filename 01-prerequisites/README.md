@@ -1,22 +1,22 @@
-- DESCRIPTION 
+## DESCRIPTION 
 
 **End-to-End Monitoring Setup on AWS EKS using Prometheus & Grafana with IRSA and EBS CSI Driver**
 
 This project demonstrates setting up a complete Kubernetes monitoring stack on Amazon EKS using:
 
--> # Amazon EKS (eksctl)
+- Amazon EKS (eksctl)
 
--> Metrics Server
+- Metrics Server
 
--> IRSA (IAM Roles for Service Accounts)
+- IRSA (IAM Roles for Service Accounts)
 
--> EBS CSI Driver
+- EBS CSI Driver
 
--> Prometheus (Helm)
+- Prometheus (Helm)
 
--> Grafana (Helm)
+- Grafana (Helm)
 
--> Java Application Monitoring
+- Java Application Monitoring
 
 The project includes real-world troubleshooting and production-grade setup practices.
 

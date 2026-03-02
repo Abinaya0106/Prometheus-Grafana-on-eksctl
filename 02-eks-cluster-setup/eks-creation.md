@@ -39,15 +39,15 @@ Sets current context to that cluster
 
 ## Updating kubeconfig :
 
-aws eks update-kubeconfig --region us-east-1 --name eksctl-eks2-cluster
-aws eks update-kubeconfig --region us-east-1 --name eks2
-aws eks list-clusters --region us-east-1
+> --aws eks update-kubeconfig --region us-east-1 --name eksctl-eks2-cluster
+
+> --aws eks list-clusters --region us-east-1
 
 ![kubeconfig](kubeconfig.png)
 
 After this, you can run:
 
-kubectl get nodes
+> --kubectl get nodes
 
 ##### Without Updating Kubeconfig :
 

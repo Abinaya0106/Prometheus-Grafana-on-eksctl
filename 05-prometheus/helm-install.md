@@ -8,16 +8,16 @@ https://prometheus-community.github.io/helm-charts
 It adds the Prometheus Community Helm chart repository to your local Helm, so you can install charts like prometheus, kube-prometheus-stack, etc., from that repo.
 
 
-- Update helm chart repository
+## Update helm chart repository
 helm repo update
 helm repo list
 
 ![helm-repo](image.png)
 
-# Create prometheus namespace
+## Create prometheus namespace
 kubectl create namespace prometheus
 
-# Install Prometheus
+## Install Prometheus
 
 helm install prometheus prometheus-community/prometheus --namespace
 prometheus --set alertmanager.persistentVolume.storageClass="gp2" --set

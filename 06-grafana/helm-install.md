@@ -3,34 +3,31 @@
 helm repo add grafana https://grafana.github.io/helm-charts helm repo
 update
 
-> Create a namespace Grafana : 
+### Create a namespace Grafana : 
 
-kubectl create namespace grafana
+> kubectl create namespace grafana
 
 This command installs Grafana on EKS with persistent storage and exposes it publicly via an AWS LoadBalancer. 🚀
 
-helm install grafana grafana/grafana --namespace grafana --set
+> helm install grafana grafana/grafana --namespace grafana --set
 persistence.enabled=true --set persistence.storageClassName="gp2" --set
 service.type=LoadBalancer
 
-	helm install grafana grafana/grafana
-👉 Installs Grafana Helm chart.
-	--namespace grafana
-👉 Installs it inside grafana namespace (must exist).
-	persistence.enabled=true
-👉 Enables storage (data won’t be lost on restart).
-	persistence.storageClassName="gp2"
-👉 Uses AWS EBS gp2 storage class.
-	adminPassword='EKS!sAWSome'
-👉 Sets Grafana admin password.
-	service.type=LoadBalancer
-👉 Creates AWS ELB → gives public external IP.
+- helm install grafana grafana/grafana
+Installs Grafana Helm chart.
+- namespace grafana
+Installs it inside grafana namespace (must exist), persistence.enabled=true.Enables storage (data won’t be lost on restart).persistence.storageClassName="gp2"
+- Uses AWS EBS gp2 storage class.
+adminPassword='EKS!sAWSome'
+- Sets Grafana admin password.
+service.type=LoadBalancer
+- Creates AWS ELB → gives public external IP.
 
 ![Grafana-installation](image.png)
 
 ### After Installation :
 
-kubectl get svc -n Grafana
+> kubectl get svc -n Grafana
 
 ![grafanasvc](image-1.png)
 

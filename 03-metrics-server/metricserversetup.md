@@ -2,13 +2,13 @@
 ## Installing KubeServer Setup:
 
 
-kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml ~
+> --kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml ~
 
-kubectl apply -f components.yaml
+> --kubectl apply -f components.yaml
  
 ## Verify that the metrics-server deployment is running the desired number of pods with the following command
 
-kubectl get deployment metrics-server -n kube-system
+> --kubectl get deployment metrics-server -n kube-system
 
 **Errors Occured :**
 

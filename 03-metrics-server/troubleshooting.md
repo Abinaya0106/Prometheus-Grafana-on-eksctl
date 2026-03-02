@@ -4,7 +4,7 @@
 
 kubectl top nodes Error: Metrics API not available
 
-> kubectl get pods -n kube-system
+> --kubectl get pods -n kube-system
 
 NAME                              READY   STATUS    RESTARTS   AGE
 aws-node-t25gl                    2/2     Running   0          79m
@@ -31,7 +31,7 @@ APIService was not fully registered.Metrics server failed due to TLS verificatio
 
 Edit deployment and add: --kubelet-insecure-tls
 
-> kubectl edit deployment metrics-server -n kube-system
+> --kubectl edit deployment metrics-server -n kube-system
 
 
 Argument needed : --kubelet-insecure-tls -> In EKS, metrics-server usually fails because of this
@@ -42,12 +42,12 @@ kubectl get events -n kube-system
 https://d.docs.live.net/ea14a5fd9fc5ec18/Abinaya%20-%202025%20The%20Cloud%20Engineer/Heydevops/Kube/Minitoring%20project/metric%20server%20logs.txt
  
 Workaround :
-> kubectl edit deployment metrics-server -n kube-system (add this line in components.yaml)
+> -- kubectl edit deployment metrics-server -n kube-system (add this line in components.yaml)
 - --kubelet-insecure-tls
 
 
 ## Verification
 
-> kubectl get deployment metrics-server -n kube-system
+> --kubectl get deployment metrics-server -n kube-system
 
 ![kubectldeployment](image.png)
